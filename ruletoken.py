@@ -40,5 +40,4 @@ def genToken(rule):
     t_list.append(action)
     t_list = "".join(t_list)
     name = rule.attrib['name']
-    token_dict = {t_list : name}
-    return (t_list, name)
+    return (name, t_list)

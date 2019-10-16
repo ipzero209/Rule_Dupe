@@ -29,19 +29,18 @@ def ruleCheck(target, donor):
     # Load rule tokens for target DG into bloom filter
     target_rule_dict = {}
     for rule in target:
-        token_dict = ruletoken.genToken(rule)
-        token_list = token_tuple[0]
-        token = "".join(token_list)
+        token_tuple = ruletoken.genToken(rule)
+        token = token_tuple[1]
+        target_rule_dict[token_tuple[1]] = token_tuple[0]
         hash_count = 0
         while hash_count < 4:
             hash_result = mmh3.hash(token, hash_count) % 10000000
             rule_filter[hash_result] = 1
             hash_count += 1
     # Check rule tokens for donor DG against bloom filter
-    print(target_rule_dict)
     for rule in donor:
-        token_list = ruletoken.genToken(rule)
-        token = "".join(token_list)
+        token_tuple = ruletoken.genToken(rule)
+        token = token_tuple[1]
         hash_count = 0
         hash_track = 0
         while hash_count < 3:
@@ -52,7 +51,7 @@ def ruleCheck(target, donor):
                 hash_track += 1
                 hash_count += 1
         if hash_track == 3:
-            print("{} from the donor DG has a possible match in the target DG.".format(rule.attrib['name']))
+            print("{} from the donor DG has a possible match with {} in the target DG.".format(rule.attrib['name'], target_rule_dict[token]))
     return
 
 
