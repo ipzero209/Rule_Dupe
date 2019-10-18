@@ -11,8 +11,13 @@ that there are unhandled cases:
 4. Probably others
 
 
+## Prerequisits
+1. Python 3
+2. mmh3 (Python module - https://pypi.org/project/mmh3/)
+3. bitarray (Python module - https://pypi.org/project/bitarray/)
 
-##Usage
+
+## Usage
 
 ./dup_finder -t <target_DG> -d <donor_DG> -c <config_file>
 
