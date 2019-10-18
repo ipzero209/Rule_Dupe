@@ -1,5 +1,17 @@
 # Rule_Dupe
 
+This will find duplicate rules between two device groups based on the supplied xml configuration. 
+This comparison is done based on the strings present in the match criteria of each rule. This means 
+that there are unhandled cases:
+
+
+1. Address objects and groups are compared based on name, not value.
+2. No expansion of address groups is done.
+3. No sub/super netting is performed for explicit source or destination IP addresses.
+4. Probably others
+
+
+
 ##Usage
 
 ./dup_finder -t <target_DG> -d <donor_DG> -c <config_file>
